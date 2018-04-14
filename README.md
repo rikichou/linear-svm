@@ -45,7 +45,7 @@
 
 通过上面的讲解，可以将我们的问题描述为：
 
-![1.png](attachment:1.png)
+<img src="1.png" width="40%">
 
 其中，目标为找到一条最胖的分割线。
 
@@ -57,7 +57,7 @@
 
 所有样本划分正确的意思是，WXn预测的正负号，要和Yn相同。所以上图可以进一步地表示为下图
 
-![2.png](attachment:2.png)
+<img src="2.png" width="40%">
 
 所以我们现在明确了目标：找出largest-margin（边界最宽） separating（正确分类）的分割线或者超平面（以下统一叫做超平面）。
 
@@ -65,19 +65,19 @@
 
 我们的目标是找出一个边界最宽且正确分类的超平面，在这之前，首先要将上图中的文字描述转换为数学表达式。首先看看如果计算点到超平面的距离，也就是distance(Xn, w)。其实这个在几何或者线代上有公式可用，在这里不做推导，林老师有做相关的[推导](https://www.youtube.com/watch?v=lHo9GcIURRs&index=3&list=PLXVfgk9fNX2IQOYPmqjqWsNUFl2kpk1U2)，有兴趣的同学可以看一下。所以我们可以轻易地得到
 
-![3.png](attachment:3.png)
+<img src="3.png" width="40%">
 
 对于这个距离我们有一个正式的名称叫做：几何间隔
 
 但是几何间隔的表达式中有绝对值的符号，这是不利于我们优化的。因为我们要求我们的超平面能够将所有样本都正确分类，所以Yn.(WXn + b)肯定为正数，进而可以将绝对值去掉。表示为下图所示。其中Yn.(WXn + b)有一个正式的名称叫做：函数间隔
 
-![4.png](attachment:4.png)
+<img src="4.png" width="40%">
 
 ### 3.2 模型表示
 
 所以经过了上面的转换，我们的问题有了新的数学形式，表述如下：
 
-![5.png](attachment:5.png)
+<img src="5.png" width="40%">
 
 好了，有了新的数学形式了，但是好像还是不会解，因为max之类的条件总是不利于求解最佳问题的。所以我们就要想办法把max去掉。
 
@@ -89,21 +89,21 @@
 
 那这样做有什么好处呢？因为最小的函数间隔Yn.(WXn + b) = 1，所以，margin(w, b)就可以简单地写为1/||W||
 
-![6.png](attachment:6.png)
+<img src="6.png" width="40%">
 
 所以新问题可以进一步地表示为
 
-![7.png](attachment:7.png)
+<img src="7.png" width="40%">
 
 由于我们的新条件的限制性更强（要求每一个点的函数间隔都大于等于1），所以我们可以把灰色部分的条件去掉。得到以下表示
 
-![8.png](attachment:8.png)
+<img src="8.png" width="40%">
 
 咦，好像还是不会解！之前不是说好了把max条件去掉吗？怎么又出来一个min条件。好，现在就来去掉这个条件。
 
 那我们可不可以对现有的条件做一个放松呢？现有的条件是所有的样本点中，最小的函数间隔等于1，那我可不可以改为，所有的样本点的函数间隔都大于或者等于1呢？
 
-![9.png](attachment:9.png)
+<img src="9.png" width="40%">
 
 这样的条件有利于我们的最优化的求解。但是，这样随意改变限制条件不会对最优解产生影响么？也就是说当我使用该条件得出最优解后，然后使用该最优解计算所有样本点的函数间隔，是否会产生所有的函数间隔均大于1的情况？下面就来证明一下我们的担心是多余的！
 如果现在找到了最优解(w,b),且通过计算发现最小的函数间隔为1.126（随意的一个值，仅仅用于说明最小函数间隔不为1.使用反证法），因为是最优解，所以当前的(w,b)组合一定是使1/||w||的值最大的组合。那真的是吗？如果我们现在将(w,b)同时缩放1.126倍，那我们的最小函数间隔变为1，是在我们的限制范围内。如果说之前的(w,b)是最优解，那么现在缩放后的(w,b)一定会是1/||w||减小。但是事实却不是这样，当我们的w减小时，1/||w||的值在增加，说明最小函数间隔为1.126时的(w,b)的解并不是最优解。同理可证，在函数间隔非1时的(w,b)均不是最优解。所以说，当我们寻找到最优解时，每个样本点的函数间隔值一定是大于等于1的。
@@ -116,7 +116,7 @@
 
 所以我们就得到了最大间隔问题的标准形式
 
-![10.png](attachment:10.png)
+<img src="10.png" width="40%">
 
 
 
@@ -124,7 +124,7 @@
 
 上一节，我们通过一系列的转换，将最大间隔问题的最终形式定格在如下：
 
-![10.png](attachment:10.png)
+<img src="10.png" width="40%">
 
 现在的问题就是找到一个符合限制条件的目标函数的最佳解。想想我们以往的算法analytic solution?GD?SGD?因为该问题是有条件限制的缘故，以前的算法都无法使用。
 
@@ -147,7 +147,7 @@
 
 我们的问题以及标准的二次规划问题如下图所示：
 
-![11.png](attachment:11.png)
+<img src="11.png" width="40%">
 
 
 * 标准的二次规划问题优化的目标是u向量
@@ -158,7 +158,7 @@
 
 接下来，只要将原始问题和u,Q,p,A,c一一对应上
 
-![12.png](attachment:12.png)
+<img src="12.png" width="40%">
 
 接下来就是将相应的u,Q,p,A,c代入二次规划软件从而得到最优解
 
@@ -168,7 +168,7 @@
 
 首先肯定是要看一下在MATLAB中这个函数[quadprog](http://cn.mathworks.com/help/optim/ug/quadprog.html?requestedDomain=www.mathworks.com)是怎么用的咯。如下图：
 
-![quadprog_1.png](attachment:quadprog_1.png)
+<img src="quadprog_1.png" width="40%">
 
 在描述部分我们可以看出，该QPsolver和我们4.1节讲的大致一致，
 
@@ -187,19 +187,19 @@
 * x3=(-1,-1), y3 = -1
 * x4=(-2,-2), y4 = -1
 
-![quadprog_2.png](attachment:quadprog_2.png)
+<img src="quadprog_2.png" width="40%">
 
 通过上述关系，我们很容易得出MATLAB中quadprog的H，f，A，b参数分别为
 
-![quadprog_3.png](attachment:quadprog_3.png)
+<img src="quadprog_3.png" width="40%">
 
 然后，直接运行quadprog()得出
 
-![quadprog_4.png](attachment:quadprog_4.png)
+<img src="quadprog_4.png" width="40%">
 
 我们可知b = 0, w0 = 0.5, w1 = 0.5，很明显这是我们想要的分割面，且x1和x3为支持向量。
 
-![quadprog.png](attachment:quadprog.png)
+<img src="quadprog.png" width="40%">
 
 
 ## 5. 小结
