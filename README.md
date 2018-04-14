@@ -15,7 +15,7 @@
 
 因为支持向量机属于一种二分类的模型，所以现在从简单的线性分类器入手。
 
-![linear_sep.png](attachment:linear_sep.png)
+<img src="linear-sep.png" width="40%">
 
 线性分类器说的是什么呢？
 
